@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="navbar.css" rel="stylesheet">
+    <title>Arduino</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RC Car</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="Arduino.html">Arduino code</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="Elektrisch schema.html">Elektrisch schema</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Arduino uitleg</a>
+                </li>
+            </ul>
+            <form>
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </form>
+            </div>
+        </div>
+    </nav>
+    <h1>Arduino code</h1>
+    <pre>
+        &nbsp;<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+       
+       <b><font color="#d35400">SoftwareSerial</font></b> <font color="#000000">BTserial</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#000000">3</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; RX | TX</font>
+       <font color="#434f54">&#47;&#47; Connect the HM-10 TX to the Arduino RX on pin 2.</font>
+       <font color="#434f54">&#47;&#47; Connect the HM-10 RX to the Arduino TX on pin 3 through a voltage divider.</font>
+       
+       <font color="#00979c">char</font> <font color="#000000">t</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;</font>
+       
+       <font color="#434f54">&#47;&#47;defines pins numbers for Motor A (Forward &amp; Reverse)</font>
+       <font color="#00979c">int</font> <font color="#000000">pinA1</font> <font color="#434f54">=</font> <font color="#000000">10</font><font color="#000000">;</font>
+       <font color="#00979c">int</font> <font color="#000000">pinA2</font> <font color="#434f54">=</font> <font color="#000000">11</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;defines pins numbers for Motor B (Steering)</font>
+       <font color="#00979c">int</font> <font color="#000000">pinB1</font> <font color="#434f54">=</font> <font color="#000000">6</font><font color="#000000">;</font>
+       <font color="#00979c">int</font> <font color="#000000">pinB2</font> <font color="#434f54">=</font> <font color="#000000">5</font><font color="#000000">;</font>
+       
+       <font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+       
+        &nbsp;<font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+       
+        &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;
+        &nbsp;<font color="#95a5a6">&#47;* Initialize Motor A Pin Modes *&#47;</font>
+        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+       
+        &nbsp;<font color="#95a5a6">&#47;* Initialize Motor B Pin Modes *&#47;</font>
+        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       
+       <font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+       
+        &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">available</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font>
+        &nbsp;<font color="#000000">{</font>
+        &nbsp;&nbsp;&nbsp;<font color="#000000">t</font> <font color="#434f54">=</font> <font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">read</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#000000">}</font>
+        &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">t</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;F&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;&nbsp;&nbsp;<font color="#000000">forward</font><font color="#000000">(</font><font color="#000000">150</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#000000">}</font>
+        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;B&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;&nbsp;&nbsp;<font color="#000000">reverse</font><font color="#000000">(</font><font color="#000000">150</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#000000">}</font>
+        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;L&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;&nbsp;&nbsp;<font color="#000000">left</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#000000">}</font>
+        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;R&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;&nbsp;&nbsp;<font color="#000000">right</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#000000">}</font>
+        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;A&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;&nbsp;&nbsp;<font color="#000000">stopcar</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#000000">}</font>
+        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font><font color="#00979c">&#39;D&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;&nbsp;&nbsp;<font color="#000000">stuurrichting_midden</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#000000">}</font>
+       
+        &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       <font color="#00979c">void</font> <font color="#000000">forward</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">s</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#000000">s</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       
+       <font color="#00979c">void</font> <font color="#000000">reverse</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">b</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#000000">b</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       
+       <font color="#00979c">void</font> <font color="#000000">stopcar</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       
+       <font color="#00979c">void</font> <font color="#000000">right</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#000000">200</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">50</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       
+       <font color="#00979c">void</font> <font color="#000000">left</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#000000">200</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">delay</font> <font color="#000000">(</font><font color="#000000">50</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       
+       <font color="#00979c">void</font> <font color="#000000">stuurrichting_midden</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">50</font><font color="#000000">)</font><font color="#000000">;</font>
+        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+       <font color="#000000">}</font>
+       
+    </pre>
+    <div id="footer">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+            <p class="text-center text-muted">Gip RC car</p>
+        </footer>
+</body>
+
+</html>
