@@ -10,6 +10,12 @@
     <link href="navbar.css" rel="stylesheet">
     <title>Arduino</title>
 </head>
+<style>
+    pre {
+        padding-top: 5%;
+    }
+</style>
+
 <body>
     <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
         <div class="container-fluid">
@@ -22,6 +28,9 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="Hardware.html">Hardware</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="Arduino.html">Arduino code</a>
@@ -39,7 +48,8 @@
             </div>
         </div>
     </nav>
-    <h1>Arduino code</h1>
+    
+    <div class="container">
     <pre>
         &nbsp;<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
        
@@ -134,17 +144,17 @@
        <font color="#000000">}</font>
        
     </pre>
+    </div>
     <div id="footer">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-            </ul>
-            <p class="text-center text-muted">Gip RC car</p>
-        </footer>
+        <div id="footer">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="https://www.facebook.com/SGMOSART/" class="nav-link px-2 text-muted">Facebook</a></li>
+                    <li class="nav-item"><a href="https://www.instagram.com/accounts/login/?next=/mosart.ruimtevoortalent/" class="nav-link px-2 text-muted">Instagram</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">↑</a></li>
+                </ul>
+                <p class="text-center text-muted">Gip RC car</p>
+            </footer>
 </body>
 
 </html>
