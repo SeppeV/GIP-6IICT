@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hardware</title>
-    <meta charset="UTF-8">
-    <title>RC car</title>
+    <title>Hardware</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -14,43 +12,142 @@
     <link href="navbar.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">RC Car</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.html">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="Hardware.html">Hardware</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="Arduino.html">Arduino code</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="Elektrisch schema.html">Elektrisch schema</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="Arduino uitleg.html">Arduino uitleg</a>
-                </li>
-            </ul>
-            <form>
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </form>
+  <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">RC Car</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="Hardware.html">Hardware</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="Arduino.html">Arduino code</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="Elektrisch schema.html">Elektrisch schema</a>
+            </li>
+            
+        </ul>
+        <form>
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </form>
+        </div>
+    </div>
+</nav>  
+                </body>
+                <center>
+            <div class="container">
+                <div id="carousel" class="container bg-dark text-light">
+                    <div class="row">
+                        <div class="page-header">
+                            <div class="d-flex justify-content-center"><h1>Hardware</div>
+                        </div>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                <img src="Arduino uitleg.jpg" class="d-block w-100" alt="...">
+                                <div class="carousel-caption bg-dark">
+                                </div>
+                                </div>
+                                <div class="carousel-item">
+                                <img src="HM-10-BLE-Module.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                <img src="H-brug.jpg" class="d-block w-" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button> 
+                        </center>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+    <div class="container">
+    <p>
+        <H1>Uitleg Arduino</H1>
+        Een Arduino (Uno) is een klein board met programmeerbare elektronica. Met een Arduino kan je verschillende elektrische componenten aansturen. Denk aan lampjes, schakelaars, motortjes en verschillende sensoren.
+        1. Via de USB A/B poort sluit je de Uno aan op de computer zodat je het board kan programmeren. 
+        <p></p>
+        2. De Uno bevat een 9V DC Barrel Jack aansluiting waarmee je het board / project kan voorzien van stroom.
+        <p></p>
+        3. Als je geen externe voeding gebruikt voor je project kan je je componenten aansluiten op de 3,3V of 5V Power Pins.
+        <p></p>
+        4. De Uno heeft 6 Analoge Pins die elk 10 Bits resolutie bieden, ofwel 1024 verschillende waarden. De Pins kunnen worden gebruikt als input.
+        <p></p>
+        5. De ATmega328 is het belangrijkste onderdeel van de Uno. Deze microcontroller-chip zorgt ervoor dat de code wordt uitgevoerd als het board wordt opgestart.
+        <p></p>
+        6. De Digitale Pins op de Uno kunnen worden ingesteld als input of output. De eerste 6 Pins kunnen ook worden gebruikt als PWM (pulse with modulation) output.
+        <p></p>
+        <H1>Uitleg HM-10</H1>
+        HM-10 BLE Bluetooth 4.0 CC2541 draadloze module is een BLE-module voor een ingebed systeem om BLE draadloze communicatie te krijgen met BLE-compatibele apparaten (bijv. Android, iPhone en iPad).
 
-    
-
-<!---->
-<div class="container">
+        Het is volledig configureerbaar door een uitgebreide en goed gedocumenteerde AT-opdrachtenset en maakt transparante datacommunicatie mogelijk via seriële UART (standaard baudrate 9600bps). De Bluetooth 4.0 HM-10 is eigenlijk een breakout-kaart voor cc2541, het brak de LED-pins, RX / TX uit en voegde ook de spanningsregelaar toe die regelmatig 5v tot 3,3 v was.
+        <p></p>
+        Pinbeschrijving van HM-10 BLE Bluetooth 4.0 CC2541 draadloze module:
+        <p></p>
+        STATE: state testpennen, verbonden met interne LED, over het algemeen niet verbonden.
+        <p></p>
+        BRK: verbreek verbinding, dit betekent dat de Bluetooth-verbinding wordt verbroken, in het algemeen verbroken.
+        <p></p>
+        VCC: positieve pool van de stroombron.
+        <p></p>
+        GND: Ground.
+        <p></p>
+        TXD: seriële interface, verzendende terminal.
+        <p></p>
+        RXD: seriële interface, ontvangende terminal.
+    </p>
+        <H1> Uitleg H-brug</H1>
+        H-Bruggen worden doorgaans gebruikt voor het regelen van de snelheid en richting van motoren, maar kunnen ook worden gebruikt voor andere projecten, zoals het aansturen van de helderheid van bepaalde verlichtingsprojecten, zoals krachtige LED-arrays.
+        Een H-brug is een circuit dat een stroom in beide polariteiten kan aansturen en kan worden bestuurd door *Pulse Width Modulation (PWM).
+        Pulsbreedtemodulatie is een middel om de duur van een elektronische puls te regelen. Probeer je in motoren de borstel voor te stellen als een waterrad en elektronen als de stromende waterdruppels. De spanning zou het water zijn dat met een constante snelheid over het wiel stroomt, hoe meer water, hoe hoger de spanning. Motoren zijn geschikt voor bepaalde spanningen en kunnen beschadigd raken als de spanning te zwaar wordt toegepast of als deze snel wordt verlaagd om de motor te vertragen. Dus PWM. Neem de analogie van het waterrad en denk aan het water dat het in pulsen raakt maar met een constante stroom. Hoe langer de pulsen, hoe sneller het wiel zal draaien, hoe korter de pulsen, hoe langzamer het waterrad zal draaien. Motoren gaan veel langer mee en zijn betrouwbaarder als ze worden aangestuurd via PWM.
+        Uit 1: Motor A-uitgang
+        <p></p>
+        Uit 2: Motor A-uitgang
+        <p></p>
+        Uit 3: Motor B-uitgang
+        <p></p>
+        Out 4: Mo (kan eigenlijk van 5v-35v zijn, alleen gemarkeerd als 12v)
+        <p></p>
+        GND: Ground
+        <p></p>
+        5v: 5v-ingang (onnodig als uw stroombron 7v-35v is, als de stroombron 7v-35v is, kan deze fungeren als een 5v-uitgang)
+        <p></p>
+        EnA: Schakelt PWM-signaal in voor motor A (zie de sectie "Arduino-schetsoverwegingen")
+        <p></p>
+        In1: Motor A inschakelen
+        <p></p>
+        In2: Motor A inschakelen
+        <p></p>
+        In3: Motor B . inschakelen
+        <p></p>
+        In4: Motor B . inschakelen
+        <p></p>
+        EnB: Schakelt PWM-signaal in voor Motor B (zie de sectie "Arduino-schetsoverwegingen")
+    </div>
     <div id="footer">
+      <div id="footer">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="https://www.facebook.com/SGMOSART/" class="nav-link px-2 text-muted">Facebook</a></li>
@@ -59,6 +156,5 @@
             </ul>
             <p class="text-center text-muted">Gip RC car</p>
         </footer>
-</div>
 </body>
 </html>
