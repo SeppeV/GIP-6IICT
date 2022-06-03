@@ -49,98 +49,105 @@
     
     <div class="container">
     <pre>
-        &nbsp;<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
-       
-       <b><font color="#d35400">SoftwareSerial</font></b> <font color="#000000">BTserial</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#000000">3</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; RX | TX</font>
-       <font color="#434f54">&#47;&#47; Connect the HM-10 TX to the Arduino RX on pin 2.</font>
-       <font color="#434f54">&#47;&#47; Connect the HM-10 RX to the Arduino TX on pin 3 through a voltage divider.</font>
-       
-       <font color="#00979c">char</font> <font color="#000000">t</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;</font>
-       
-       <font color="#434f54">&#47;&#47;defines pins numbers for Motor A (Forward &amp; Reverse)</font>
-       <font color="#00979c">int</font> <font color="#000000">pinA1</font> <font color="#434f54">=</font> <font color="#000000">10</font><font color="#000000">;</font>
-       <font color="#00979c">int</font> <font color="#000000">pinA2</font> <font color="#434f54">=</font> <font color="#000000">11</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;defines pins numbers for Motor B (Steering)</font>
-       <font color="#00979c">int</font> <font color="#000000">pinB1</font> <font color="#434f54">=</font> <font color="#000000">6</font><font color="#000000">;</font>
-       <font color="#00979c">int</font> <font color="#000000">pinB2</font> <font color="#434f54">=</font> <font color="#000000">5</font><font color="#000000">;</font>
-       
-       <font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
-       
-        &nbsp;<font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
-       
-        &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;
-        &nbsp;<font color="#95a5a6">&#47;* Initialize Motor A Pin Modes *&#47;</font>
-        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
-       
-        &nbsp;<font color="#95a5a6">&#47;* Initialize Motor B Pin Modes *&#47;</font>
-        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       
-       <font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
-       
-        &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">available</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font>
-        &nbsp;<font color="#000000">{</font>
-        &nbsp;&nbsp;&nbsp;<font color="#000000">t</font> <font color="#434f54">=</font> <font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">read</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#000000">}</font>
-        &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">t</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;F&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;&nbsp;&nbsp;<font color="#000000">forward</font><font color="#000000">(</font><font color="#000000">150</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#000000">}</font>
-        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;B&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;&nbsp;&nbsp;<font color="#000000">reverse</font><font color="#000000">(</font><font color="#000000">150</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#000000">}</font>
-        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;L&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;&nbsp;&nbsp;<font color="#000000">left</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#000000">}</font>
-        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;R&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;&nbsp;&nbsp;<font color="#000000">right</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#000000">}</font>
-        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;A&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;&nbsp;&nbsp;<font color="#000000">stopcar</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#000000">}</font>
-        &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font><font color="#00979c">&#39;D&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;&nbsp;&nbsp;<font color="#000000">stuurrichting_midden</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#000000">}</font>
-       
-        &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       <font color="#00979c">void</font> <font color="#000000">forward</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">s</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#000000">s</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       
-       <font color="#00979c">void</font> <font color="#000000">reverse</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">b</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#000000">b</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       
-       <font color="#00979c">void</font> <font color="#000000">stopcar</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       
-       <font color="#00979c">void</font> <font color="#000000">right</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#000000">200</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">50</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       
-       <font color="#00979c">void</font> <font color="#000000">left</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#000000">200</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">delay</font> <font color="#000000">(</font><font color="#000000">50</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       
-       <font color="#00979c">void</font> <font color="#000000">stuurrichting_midden</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
-        &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">50</font><font color="#000000">)</font><font color="#000000">;</font>
-        &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
-       <font color="#000000">}</font>
-       
+        <pre>
+            &nbsp;<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SoftwareSerial</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+           
+           <font color="#434f54">&#47;&#47; Connect the HM-10 TX to the Arduino RX on pin 2.</font>
+           <font color="#434f54">&#47;&#47; Connect the HM-10 RX to the Arduino TX on pin 12 through a voltage divider.</font>
+           <b><font color="#d35400">SoftwareSerial</font></b> <font color="#000000">BTserial</font><font color="#000000">(</font><font color="#000000">12</font><font color="#434f54">,</font> <font color="#000000">3</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47; RX | TX</font>
+           
+           <font color="#434f54">&#47;&#47;data type used to store a character value.</font>
+           <font color="#00979c">char</font> <font color="#000000">t</font><font color="#000000">;</font> 
+           
+           <font color="#434f54">&#47;&#47;defines pins numbers for Motor A (Forward &amp; Reverse)</font>
+           <font color="#00979c">int</font> <font color="#000000">pinA1</font> <font color="#434f54">=</font> <font color="#000000">10</font><font color="#000000">;</font>
+           <font color="#00979c">int</font> <font color="#000000">pinA2</font> <font color="#434f54">=</font> <font color="#000000">11</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;<font color="#434f54">&#47;&#47;defines pins numbers for Motor B (Steering)</font>
+           <font color="#00979c">int</font> <font color="#000000">pinB1</font> <font color="#434f54">=</font> <font color="#000000">6</font><font color="#000000">;</font>
+           <font color="#00979c">int</font> <font color="#000000">pinB2</font> <font color="#434f54">=</font> <font color="#000000">5</font><font color="#000000">;</font>
+           
+           <font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+           
+            &nbsp;<font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;tells the Arduino to get ready to exchange messages with the Serial Monitor at a data rate of 9600 bits per second.</font>
+           
+            &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;starts serial communication</font>
+            &nbsp;
+            &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;used to configure pinA1 to behave as an output.</font>
+            &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;used to configure pinA1 to behave as an output.</font>
+           
+            &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;used to configure pinB1 to behave as an output.</font>
+            &nbsp;<font color="#d35400">pinMode</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;used to configure pinB2 to behave as an output.</font>
+           <font color="#000000">}</font>
+           
+           <font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">available</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#434f54">&#47;&#47;gets the stored bytes from the serial port that are available for reading </font>
+            &nbsp;<font color="#000000">{</font>
+            &nbsp;&nbsp;&nbsp;<font color="#000000">t</font> <font color="#434f54">=</font> <font color="#000000">BTserial</font><font color="#434f54">.</font><font color="#d35400">read</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+            &nbsp;<font color="#000000">}</font>
+            &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">t</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;print richting op seriële monitor</font>
+            &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;F&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;&nbsp;&nbsp;<font color="#000000">forward</font><font color="#000000">(</font><font color="#000000">200</font><font color="#000000">)</font><font color="#000000">;</font>
+            &nbsp;<font color="#000000">}</font>
+            &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;B&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;&nbsp;&nbsp;<font color="#000000">reverse</font><font color="#000000">(</font><font color="#000000">200</font><font color="#000000">)</font><font color="#000000">;</font>
+            &nbsp;<font color="#000000">}</font>
+            &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;L&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#000000">600</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B1</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B2</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A1</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A2</font>
+            &nbsp;<font color="#000000">}</font>
+            &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;R&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#000000">600</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B2</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B1</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A1</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A2</font>
+            &nbsp;<font color="#000000">}</font>
+            &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font> <font color="#00979c">&#39;A&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;&nbsp;&nbsp;<font color="#000000">stopcar</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+            &nbsp;<font color="#000000">}</font>
+            &nbsp;<font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">t</font> <font color="#434f54">==</font><font color="#00979c">&#39;D&#39;</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B1</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B2</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A1</font>
+            &nbsp;&nbsp;&nbsp;<font color="#d35400">analogWrite</font><font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A2</font>
+            &nbsp;<font color="#000000">}</font>
+           
+            &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;wait 100ms</font>
+           <font color="#000000">}</font>
+           
+           <font color="#434f54">&#47;&#47;car forward</font>
+           <font color="#00979c">void</font> <font color="#000000">forward</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">s</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin A1 high</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin A2 low</font>
+            &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#000000">s</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A1</font>
+           <font color="#000000">}</font>
+           
+           
+           <font color="#00979c">void</font> <font color="#000000">reverse</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">b</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin A1 low</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin A2 high</font>
+            &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#000000">b</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a A2</font>
+           <font color="#000000">}</font>
+           
+           <font color="#00979c">void</font> <font color="#000000">stopcar</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin A1 low</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinA2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin A1 low</font>
+           <font color="#000000">}</font>
+           
+           
+           <font color="#00979c">void</font> <font color="#000000">right</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#000000">600</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B2</font>
+            &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">3000</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;wait 3s</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin B2 low</font>
+           <font color="#000000">}</font>
+           
+           <font color="#00979c">void</font> <font color="#000000">left</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+            &nbsp;<font color="#d35400">analogWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#000000">600</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;<font color="#434f54">&#47;&#47;Writes an analog value (PWM wave) to a B1</font>
+            &nbsp;<font color="#d35400">delay</font> <font color="#000000">(</font><font color="#000000">5000</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;wait 5s</font>
+            &nbsp;<font color="#d35400">digitalWrite</font> <font color="#000000">(</font><font color="#000000">pinB1</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font> <font color="#434f54">&#47;&#47;set pin B1 low</font>
+           <font color="#000000">}</font>
+           
+           </pre>
     </pre>
     </div>
     <div id="footer">
